@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:02:58 by ctardy            #+#    #+#             */
-/*   Updated: 2021/11/17 12:16:24 by ctardy           ###   ########.fr       */
+/*   Updated: 2021/11/17 15:30:16 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,15 @@ char	*read_buff(char *str, int fd)
 	if (buff == NULL)
 		return (NULL);
 	i = 1;
-	while ((int)ft_strchr(str, '\n') == 0 && i > 0)
+	while (ft_strchr(str, '\n') == NULL && i != 0)
 	{
-	//	printf("kikoo");
-		//buff[0] = '\0';
 		i = read(fd, buff, BUFFER_SIZE);
-		if (i <= 0)
+		if (i == -1)
 		{
 			free(buff);
-			if (str && *str)
-				return (str);
 			return (NULL);
 		}
+
 		buff[i] = '\0';
 		str = ft_strjoin(str, buff);
 	}
@@ -48,7 +45,7 @@ char *cut_str(char *str)
 	int		i;
 
 	i = 0;
-	if (!str)
+	if (str[0] == '\0')
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
@@ -82,7 +79,7 @@ char *buff_to_str(char *str)
 		free(str);
 		return (NULL);
 	}
-	buff = malloc(ft_strlen(str) - i + 1); // LEAK ICI FLECHE
+	buff = malloc(ft_strlen(str) - i + 1); 
 	if (buff == NULL)
 		return (NULL);
 	i++;
@@ -104,17 +101,8 @@ char	*get_next_line(int fd)
 	if (str == NULL)
 		return (NULL);
 	inter = cut_str(str);
+	if (!str)
+		return (inter);
 	str = buff_to_str(str);
 	return (inter);
 }
-/*
-int main()
-{
-	int fd;
-	fd = open("Fichier_a_lire", O_RDONLY);
-	printf("1. '%s'\n", get_next_line(fd));
-	printf("2. '%s'\n", get_next_line(fd));	
-	printf("3. '%s'\n", get_next_line(fd));
-	printf("4. '%s'\n", get_next_line(fd));
-}
-*/
