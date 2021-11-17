@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:02:58 by ctardy            #+#    #+#             */
-/*   Updated: 2021/11/17 15:30:16 by ctardy           ###   ########.fr       */
+/*   Updated: 2021/11/17 15:43:22 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*read_buff(char *str, int fd)
 {
 	char	*buff;
 	int		i;
-	
+
 	buff = malloc(BUFFER_SIZE + 1);
 	if (buff == NULL)
 		return (NULL);
@@ -31,15 +31,14 @@ char	*read_buff(char *str, int fd)
 			free(buff);
 			return (NULL);
 		}
-
 		buff[i] = '\0';
 		str = ft_strjoin(str, buff);
 	}
 	free(buff);
-	return(str);
+	return (str);
 }
 
-char *cut_str(char *str)
+char	*cut_str(char *str)
 {
 	char	*inter;
 	int		i;
@@ -64,11 +63,11 @@ char *cut_str(char *str)
 	return (inter);
 }
 
-char *buff_to_str(char *str)
+char	*buff_to_str(char *str)
 {
-	char *buff;
-	int i;
-	int j;
+	char	*buff;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = 0;
@@ -79,7 +78,7 @@ char *buff_to_str(char *str)
 		free(str);
 		return (NULL);
 	}
-	buff = malloc(ft_strlen(str) - i + 1); 
+	buff = malloc(ft_strlen(str) - i + 1);
 	if (buff == NULL)
 		return (NULL);
 	i++;

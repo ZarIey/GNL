@@ -6,7 +6,7 @@
 /*   By: ctardy <ctardy@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:02:47 by ctardy            #+#    #+#             */
-/*   Updated: 2021/11/17 13:14:37 by ctardy           ###   ########.fr       */
+/*   Updated: 2021/11/17 15:44:13 by ctardy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-/*	if (!s1)
-	{
-		s1 = malloc(sizeof(char) * 1);
-		s1[0] = '\0'; 
-		return (s1);
-	}
-*/
 	if (!s1 && !s2)
 		return (NULL);
 	i = 0;
@@ -70,13 +63,12 @@ char	*ft_strchr(char *s, int c)
 		i++;
 	}
 	return (0);
-//	printf("Coucou");
 }
 
 char	*ft_strdup(char *str)
 {
-	int	i;
-	char *result;
+	int		i;
+	char	*result;
 
 	result = malloc(ft_strlen(str) + 1);
 	i = -1;
